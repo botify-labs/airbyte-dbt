@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: semrush
-    schema: "{{ target.schema }}"
+    schema: "{{ var('connection_schema') }}"
     tables:
       - name: domain_organic
         identifier: semrush_domain_organic
