@@ -2,6 +2,7 @@ WITH raw_table AS (
     SELECT
         *
         REPLACE (
+            CAST(position AS integer) AS position,
             SPLIT(intents) AS intents,
             SPLIT(serp_features_by_keyword) AS serp_features_by_keyword,
             SPLIT(serp_features_by_position) AS serp_features_by_position
@@ -14,5 +15,5 @@ SELECT
 FROM
     raw_table
 QUALIFY
-    ROW_NUMBER() OVER (PARTITION BY domain, database, keyword, CAST(position AS integer), timestamp) = 1
+    ROW_NUMBER() OVER (PARTITION BY domain, database, keyword, position, timestamp) = 1
 
